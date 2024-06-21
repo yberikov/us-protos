@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package urlSh;
+
+option go_package = "./us-microservice";
+
+// The UrlShorteningService definition.
+service UrlShorteningService {
+  // Shortens a given original URL and returns the shortened URL.
+  rpc ShortenUrl (ShortenUrlRequest) returns (ShortenUrlResponse);
+
+  // Retrieves the original URL for a given shortened URL.
+  rpc GetOriginalUrl (GetOriginalUrlRequest) returns (GetOriginalUrlResponse);
+}
+
+// The request message containing the original URL to be shortened.
+message ShortenUrlRequest {
+  string original_url = 1;
+}
+
+// The response message containing the shortened URL.
+message ShortenUrlResponse {
+  string short_url = 1;
+}
+
+// The request message containing the shortened URL.
+message GetOriginalUrlRequest {
+  string short_url = 1;
+}
+
+// The response message containing the original URL.
+message GetOriginalUrlResponse {
+  string original_url = 1;
+}

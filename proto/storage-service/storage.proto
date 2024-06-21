@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package storage;
+
+option go_package = "storage-microservice/proto/storage";
+
+// The storage service definition.
+service StorageService {
+  // Saves the original URL with its shortened version.
+  rpc SaveURL(SaveURLRequest) returns (SaveURLResponse);
+
+  // Fetches the original URL based on the shortened URL.
+  rpc FetchOriginalURL(FetchURLRequest) returns (FetchURLResponse);
+}
+
+// The request message containing the original URL and shortened URL.
+message SaveURLRequest {
+  string original_url = 1;
+  string short_url = 2;
+}
+
+// The response message containing the ID of the saved URL.
+message SaveURLResponse {
+  int64 id = 1;
+}
+
+// The request message containing the shortened URL.
+message FetchURLRequest {
+  string short_url = 1;
+}
+
+// The response message containing the original URL.
+message FetchURLResponse {
+  string original_url = 1;
+}

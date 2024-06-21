@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package analytics;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "./analytics-microservice";
+
+// AnalyticsService defines the analytics service.
+service AnalyticsService {
+  // LogURLAccess logs the access of a shortened URL.
+  rpc LogURLAccess(LogURLAccessRequest) returns (LogURLAccessResponse) {}
+
+  // GetURLStats retrieves statistics for a specific URL.
+  rpc GetURLStats(GetURLStatsRequest) returns (GetURLStatsResponse) {}
+
+  // GetURLStatsForPeriod retrieves statistics for a specific URL within a time period.
+  rpc GetURLStatsForPeriod(GetURLStatsForPeriodRequest) returns (GetURLStatsForPeriodResponse) {}
+}
+
+// LogURLAccessRequest is the request message for the LogURLAccess RPC.
+message LogURLAccessRequest {
+  string urlId = 1;
+  string userId = 2;
+  google.protobuf.Timestamp timestamp = 3;
+}
+
+// LogURLAccessResponse is the response message for the LogURLAccess RPC.
+message LogURLAccessResponse {
+  bool success = 1;
+}
+
+// GetURLStatsRequest is the request message for the GetURLStats RPC.
+message GetURLStatsRequest {
+  string urlId = 1;
+  string userId = 2;
+}
+
+// GetURLStatsResponse is the response message for the GetURLStats RPC.
+message GetURLStatsResponse {
+  string urlId = 1;
+  int32 totalAccesses = 2;
+}
+
+// GetURLStatsForPeriodRequest is the request message for the GetURLStatsForPeriod RPC.
+message GetURLStatsForPeriodRequest {
+  string urlId = 1;
+  string userId = 2;
+  google.protobuf.Timestamp startTime = 3;
+  google.protobuf.Timestamp endTime = 4;
+}
+
+// GetURLStatsForPeriodResponse is the response message for the GetURLStatsForPeriod RPC.
+message GetURLStatsForPeriodResponse {
+  string urlId = 1;
+  int32 accesses = 2;
+}
