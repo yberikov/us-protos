@@ -24,7 +24,7 @@ message RegisterRequest {
 
 // RegisterResponse is the response message for the Register RPC.
 message RegisterResponse {
-  int32 userId = 1;
+  int64 userId = 1;
 }
 
 // LoginRequest is the request message for the Login RPC.
@@ -46,5 +46,5 @@ message ValidateTokenRequest {
 // ValidateTokenResponse is the response message for the ValidateToken RPC.
 message ValidateTokenResponse {
   string email = 1;
-  string userId = 2;
+  int64 userId = 2;
 }

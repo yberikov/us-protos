@@ -16,6 +16,7 @@ service UrlShorteningService {
 // The request message containing the original URL to be shortened.
 message ShortenUrlRequest {
   string original_url = 1;
+  int64 userId = 2;
 }
 
 // The response message containing the shortened URL.
